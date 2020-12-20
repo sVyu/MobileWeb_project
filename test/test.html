@@ -1,0 +1,134 @@
+﻿<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Infinity Scroll</title>
+    <script src="https://code.jquery.com/jquery-3.1.0.js"> </script>
+    <script>
+        // 이벤트를 연결합니다.
+        $(document).ready(function () {
+            // 문서 객체 추가 함수
+            var appendDocument = function () {
+                for (var i = 0; i < 100; i++) {
+                    // 문서 객체를 생성합니다.
+                    $('<h1>Infinity Scroll</h1>').appendTo('body');
+                }
+            };
+            // 초기에 문서 객체를 추가합니다.
+            appendDocument();
+            // 이벤트를 연결합니다.
+            $(window).scroll(function () {
+                // 변수를 선언합니다.
+                var scrollHeight = $(window).scrollTop() + $(window).height();
+                var documentHeight = $(document).height();
+                // 검사합니다.
+                if (scrollHeight == documentHeight) {
+                    appendDocument();
+                }
+            });
+        });
+    </script>
+</head>
+<body> -->
+
+<!-- 반응형웹 실습 -->
+<!-- <!DOCTYPE HTML>
+<html lang="ko">
+<head>
+    <title>
+    </title>
+    <style>
+        #wrap{width:90%; margin:0 auto; border:4px solid #000;}
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        content
+    </div>
+</body>
+</html> -->
+
+
+<!-- <!DOCTYPE HTML>
+<html lang="ko">
+
+<head>
+    <title>
+    </title>
+    <style>
+        #wrap {
+            width: 90%;
+            margin: 0 auto;
+            border: 2px solid #000;
+        }
+
+        #wrap div {
+            display: inline-block;
+            width: 31.25%;
+            height: 300px;
+        }
+
+        #wrap .box01 {
+            margin-right: 37.5%;
+            background: green;
+        }
+
+        #wrap .box02 {
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+        <div class="box01"></div>
+        <div class="box02"></div>
+    </div>
+</body>
+
+</html> -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    var fadeFlag = false;
+    $("#btnFade").click(function(){
+        if(!fadeFlag){
+            fadeFlag = true;
+            //숫자가 1에 가까울수록 빨라진다.
+            $("#fadeDiv").fadeIn(500);
+        }else{
+            fadeFlag = false;
+            $("#fadeDiv").fadeOut(500);
+        }
+    });
+ 
+    var slideFlag = false;
+    $("#btnSlide").click(function(){
+        if(!slideFlag){
+            slideFlag = true;
+                    //숫자가 1에 가까울수록 빨라진다.
+            $("#slideDiv").slideDown(500);
+        }else{
+            slideFlag = false;
+            $("#slideDiv").slideUp(500);
+        }
+    });
+ 
+});
+</script>
+</head>
+<body>
+ 
+<input type="button" value="Fade In And Out" id="btnFade">
+<br>
+<div id="fadeDiv" style="display:none;">Hello Fade Test!!</div>
+<br>
+<input type="button" value="Slide Down And Up" id="btnSlide">
+<br>
+<div id="slideDiv" style="display:none;">Hello Slide Test!!</div>
+</body>
+</html>

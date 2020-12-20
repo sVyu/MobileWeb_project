@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    var fadeFlag = false;
+    $("#btnFade").click(function(){
+        if(!fadeFlag){
+            fadeFlag = true;
+            //숫자가 1에 가까울수록 빨라진다.
+            $("#fadeDiv").fadeIn(500);
+        }else{
+            fadeFlag = false;
+            $("#fadeDiv").fadeOut(500);
+        }
+    });
+ 
+    var slideFlag = false;
+    $("#btnSlide").click(function(){
+        if(!slideFlag){
+            slideFlag = true;
+                    //숫자가 1에 가까울수록 빨라진다.
+            $("#slideDiv").slideDown(500);
+        }else{
+            slideFlag = false;
+            $("#slideDiv").slideUp(500);
+        }
+    });
+ 
+});
+</script>
+</head>
+<body>
+ 
+<input type="button" value="Fade In And Out" id="btnFade">
+<br>
+<div id="fadeDiv" style="display:none;">Hello Fade Test!!</div>
+<br>
+<input type="button" value="Slide Down And Up" id="btnSlide">
+<br>
+<div id="slideDiv" style="display:none;">Hello Slide Test!!</div>
+</body>
+</html>

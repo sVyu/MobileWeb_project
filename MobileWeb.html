@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />                                <!-- 201533797 컴퓨터공학과 윤병헌 -->
+    <title>MyMobileWebProject</title>
+    
+    <link id="ui-stylesheet" rel="stylesheet" href="css/light/themes/light.min.css" />
+    <link id="icon-stylesheet" rel="stylesheet" href="css/light/themes/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" /> 
+    <!-- <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" /> -->
+
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <style>
+        .text_home{float:left;}
+        .images{float:right;}
+
+        #box_container{margin-top:20vmin;}
+        .box{left:25%; width:55%;}
+
+        /* width */
+        @media screen and (min-width: 800px){
+            #contents{font-size: 2.9vw; color: lightgreen;}
+            .images{width:25%; margin: 8% 12% 8% 0%;}
+            .text_home{margin:10% 0%;}
+        }
+
+        @media screen and (max-width: 800px){
+            #contents{font-size: 3.5vmin; color:orangered;}
+            .images{float: none; width: 40%; height: 40%;}
+            .text_home{float: none; width: auto;}
+        }
+
+        @media screen and (max-width: 600px){
+            #contents{font-size: 4vmin; color:#1a75ff;}
+            .images{float: none; width: 50%; height: 50%;}
+            .text_home{float: none; width: auto;}
+            
+            .box{left: 10%; width:70%;}
+        }
+
+        @media screen and (max-width: 450px){
+            #contents{font-size: 5vmin; color:lightcoral;}
+            .images{float: none; width: 60%; height: 70%;}
+            .text_home{float: none; width: auto;}
+
+            .box{left:0%; width:auto;}
+        }
+
+        @media screen and (max-width: 300px){
+            /* table{font-size:2vmin; color:pink;} */
+            #contents{font-size:6vmin; color:turquoise;}
+            .images{float: none; width: 90%; height:80%;}
+            .text_home{float: none; width: auto;}
+        }
+
+        /* height */
+        @media screen and (min-height: 750px){
+            table{font-size:3.5vh;}
+        }
+        @media screen and (max-height: 750px){
+            table{font-size:3.5vh;}
+        }
+        @media screen and (max-height: 650px){
+            table{font-size:3vh;}
+        }
+        @media screen and (max-height: 500px){
+            table{font-size:2.5vh;}
+        }
+        @media screen and (max-height: 450px){
+            table{font-size:2vh;}
+        }
+
+        #contents {
+            text-align: center;
+        } 
+
+        table{
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2%;
+        }
+
+        th, td {
+            border-bottom: 1px solid #5a5a5a;
+            padding: 10px;
+            /* font-size: 4vmin; */
+            text-align: center;
+        }
+
+        #th_BudsPlus{
+            color: red;
+        }
+        #th_BudsLive{
+            color : blue;
+        }
+
+        .budsPlusPoint{
+            color :#ff0066;
+        }
+
+        .budsLivePoint{
+            color : #1a75ff;
+        }
+
+        th:nth-child(1),
+        td:nth-child(1) {
+            background-color:  #99ccff;
+        }
+
+        th:nth-child(2),
+        td:nth-child(2) {
+            background-color: #cce6ff;
+        }
+
+        .text{
+            font-size:4vmin;
+        }
+        .text_live{
+            color:goldenrod;
+        }
+        .text_plus{
+            color:red;
+        }
+
+        iframe{
+            width:100%;
+            height:60vmin;
+
+            /* height: 50%; */
+        }
+
+        .box{
+            overflow:hidden;
+            position:relative;
+        }
+
+        .box_item_left{
+            float:left;
+        }
+
+        .box_item_right{
+            float:right;
+        }
+
+        #text_theme{
+            font-size:40px;
+        }
+
+        #text_information{
+            margin-left:15px;
+        }
+
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            var path = "images/";
+            // 화면1 애니메이션 구현 코드
+            var frames1 = [path+'galaxy-buds-plus-blue.png', path+'galaxy-buds-plus-pink.png',
+                            path+'galaxy-buds-plus-black.png', path+'galaxy-buds-plus-red.png',
+                            path+'galaxy-buds-plus-white.png'];
+
+            var frames2 = [path+'galaxy-buds-live-aurablack.png', path+'galaxy-buds-live-mysticbronze.png',
+                             path+'galaxy-buds-live-white.png'];
+
+            var count1 = 1, count2 = 2;
+            var interval;
+
+            function changeImage1() {
+                $("#image1").fadeOut(800, function () {
+                    $("#image1").attr("src", frames1[count1 % frames1.length]);
+                    count1++;
+                    $('#image1').fadeIn(1200);
+                });
+            }
+
+            function changeImage2() {
+                $("#image2").fadeOut(800, function () {
+                    $("#image2").attr("src", frames2[count2 % frames2.length]);
+                    count2++;
+                    $('#image2').fadeIn(1200);
+                });
+            }
+
+            $("#tabFade1").click(function () {
+                clearInterval(interval);
+                interval = setInterval(changeImage1, 2000);
+            });
+
+            $("#tabFade2").click(function () {
+                clearInterval(interval);
+                interval = setInterval(changeImage2, 2000);
+            });
+            
+            $('input[type=radio][name=theme]').change(function(){
+                if(this.value == "1"){
+                    // stylesheet change 코드 !
+                    $('#ui-stylesheet').attr("href","css/light/themes/light.min.css");
+                    $('#icon-stylesheet').attr("href","css/light/themes/jquery.mobile.icons.min.css"); 
+                    // $('#page4').attr('data-theme', b);
+ 
+                    $('th:nth-child(1)').css("background-color", '#99ccff');
+                    $('td:nth-child(1)').css("background-color", '#99ccff');
+
+                    $('th:nth-child(2)').css("background-color", '#cce6ff');
+                    $('td:nth-child(2)').css("background-color", '#cce6ff');
+
+                    $('#th_BudsLive').css("color", "blue");
+                    $('.budsLivePoint').css("color", "#1a75ff");
+
+                    $('#information_icon').attr('src', "icons/information1.png");
+                    
+                }else if(this.value == '2'){
+                    $('#ui-stylesheet').attr("href", "css/dark/themes/dark.min.css");
+                    $('#icon-stylesheet').attr("href", "css/dark/themes/jquery.mobile.icons.min.css");
+                
+                    $('th:nth-child(1)').css("background-color", '#252525');
+                    $('td:nth-child(1)').css("background-color", '#004080');
+
+                    $('th:nth-child(2)').css("background-color", '#252525');
+                    $('td:nth-child(2)').css("background-color", '#00264d');
+
+                    $('#th_BudsLive').css("color", "yellow");
+                    $('.budsLivePoint').css("color", "#e6e600");
+
+                    $('#information_icon').attr('src', "icons/information3.png");
+                }
+            });
+            // $('#theme-black').click(function () {
+            //     $('#page4').attr("data-theme", "b");
+            // });
+        });
+    </script>
+</head>
+
+<body>
+    <div data-role="page" id="page1">
+        <div data-role="header">
+            <h1>Buds Introduction</h1>
+        </div>
+        <div data-role="content" id="contents">
+            <div data-role="tabs">
+                <div id="tab1">
+                    <h1 class="text_home">Samsung Galaxy<br />Buds +</h1>
+                    <img src="images/galaxy-buds-plus-blue.png" id="image1" class="images">
+                    <br/><br/>
+                </div>
+                <div id="tab2">
+                    <h1 class="text_home">Samsung Galaxy<br />Buds Live</h1>
+                    <img src="images/galaxy-buds-live-mysticbronze.png" id="image2" class="images">
+                    <br/><br/>
+                </div>
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#tab1" id="tabFade1">Buds+</a></li>
+                        <li><a href="#tab2" id="tabFade2">Buds Live</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 항상 footer가 위에 떠있을 수 있게 data-tap-toggle="false" -->
+        <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#page1"><img src="icons/home3.png"></a></li>
+                    <li><a href="#page2"><img src="icons/comparison1.png"></a></li>
+                    <li><a href="#page3"><img src="icons/play1.png"></a></li>
+                    <li><a href="#page4"><img src="icons/settings1.png"></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div data-role="page" id="page2">
+        <div data-role="header">
+            <h1>Camparison Table</h1>
+        </div>
+
+        <div data-role="content">
+            <table id="table1">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th id="th_BudsPlus">Buds<br />Plus</th>
+                        <th id="th_BudsLive">Buds<br />Live</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Price</td>
+                        <td class="budsPlusPoint">179,300</td>
+                        <td>198,000</td>
+                    </tr>
+                    <tr>
+                        <td>Fit-Type</td>
+                        <td>커널형</td>
+                        <td>오픈형</td>
+                    </tr>
+
+                    <tr>
+                        <td>Usage time</br>(Average)</td>
+                        <td class="budsPlusPoint">11h</td>
+                        <td>6-8h</td>
+                    </tr>
+
+                    <tr>
+                        <td>Usage time</br>with Case</td>
+                        <td>22h</td>
+                        <td class="budsLivePoint">20-29h</td>
+                    </tr>
+
+                    <tr>
+                        <td>Noise</br>Canceling</td>
+                        <td>PNC</td>
+                        <td>ANC</td>
+                    </tr>
+
+                    <tr>
+                        <td>Weight</td>
+                        <td>각 6.3g</td>
+                        <td class="budsLivePoint">각 5.6g</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#page1"><img src="icons/home1.png"></a></li>
+                    <li><a href="#page2"><img src="icons/comparison3.png"></a></li>
+                    <li><a href="#page3"><img src="icons/play1.png"></a></li>
+                    <li><a href="#page4"><img src="icons/settings1.png"></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3번째 페이지 -->
+    <div data-role="page" id="page3">
+        <div data-role="header">
+            <h1>Video</h1>
+        </div>
+        
+        <div data-role="content" style="text-align: center;">
+            <div class="text">갤럭시 버즈 <span class="text_live">라이브</span>
+                               vs 버즈 <span class="text_plus">플러스</span></div>
+            <iframe src="https://www.youtube.com/embed/baaYjyImpFw">
+            </iframe><br /><br />
+
+            <div class="text">갤럭시 버즈 <span class="text_live">라이브</span> 사용기</div>
+            <iframe src="https://www.youtube.com/embed/Ux8Ed-tnXwA">
+            </iframe><br /><br/>
+
+            <div class="text">갤럭시 버즈 <span class="text_live">라이브</span> vs 버즈 <span class="text_plus">플러스</span> 완전 비교</div>
+            <iframe src="https://www.youtube.com/embed/jLdkNrmsuJY">
+            </iframe><br/><br/>
+
+            <div class="text">갤럭시 버즈 <span class="text_live">라이브</span> vs 버즈 <span class="text_plus">플러스</span> 고민된다면?</div>
+            <iframe src="https://www.youtube.com/embed/QSPcfLMQM8c">
+            </iframe><br/>
+        </div>
+
+        <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#page1"><img src="icons/home1.png"></a></li>
+                    <li><a href="#page2"><img src="icons/comparison1.png"></a></li>
+                    <li><a href="#page3"><img src="icons/play3.png"></a></li>
+                    <li><a href="#page4"><img src="icons/settings1.png"></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4번째 페이지 -->
+    <div data-role="page" id="page4">
+        <div data-role="header" data-add-back-btn="true">
+            <h1>Settings</h1>
+        </div>
+        <div data-role="content">
+            <div id="box_container">
+                <div class="box">
+                    <legend class="box_item_left" id="text_theme">테마</legend>
+                    <fieldset data-role="controlgroup" data-type="horizontal" class="box_item_right">
+                        <input type="radio" name="theme" id="theme-default" value="1" checked="checked" />
+                        <label for="theme-default">Default</label>
+                        <input type="radio" name="theme" id="theme-dark" value="2" />
+                        <label for="theme-dark">Dark !</label>
+                    </fieldset>
+                </div>
+                <br />
+                <div class="box">
+                    <legend class="box_item_left" id="text_information">정보<img src="icons/information1.png" id="information_icon"></legend>
+                    <span class="box_item_right">Mobile Web Project v1.0</span>
+                </div>
+            </div>
+        </div>
+
+        <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#page1"><img src="icons/home1.png"></a></li>
+                    <li><a href="#page2"><img src="icons/comparison1.png"></a></li>
+                    <li><a href="#page3"><img src="icons/play1.png"></a></li>
+                    <li><a href="#page4"><img src="icons/settings3.png"></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
